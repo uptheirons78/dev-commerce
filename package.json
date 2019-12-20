@@ -1,0 +1,17 @@
+{
+  "name": "dev-commerce",
+  "version": "1.0.0",
+  "description": "MERN Stack Ecommerce Project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "Mauro Bono <mauro@maurobono.com> (https://www.maurobono.com)",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
+  }
+}
