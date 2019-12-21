@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema(
 // Virtual Fields
 userSchema
   .virtual('password')
-  .set(function() {
+  .set(function(password) {
     this._password = password;
     this.salt = uuidv1();
     this.hashed_password = this.encryptPassword(password);
@@ -49,13 +49,19 @@ userSchema
     return this._password;
   });
 
-userSchema.method = {
-  encryptPassword: function() {
+userSchema.methods = {
+  authenticate: function(plainText) {
+    return this.encryptPassword(plainText) === this.hashed_password;
+  },
+
+  encryptPassword: function(password) {
     if (!password) return '';
     try {
-      return crypto.createHmac('sha1', this.salt);
-      update(password).digest('hex');
-    } catch (error) {
+      return crypto
+        .createHmac('sha1', this.salt)
+        .update(password)
+        .digest('hex');
+    } catch (err) {
       return '';
     }
   }

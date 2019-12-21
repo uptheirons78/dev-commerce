@@ -11,3 +11,6 @@ A Full Stack Ecommerce project built with MERN: MongoDB, Express, React and Node
 * Create `controllers` directory and manage different controllers;
 * Create `models` directory and Mongoose Schemas. Install uuid package;
 * Create Virtuals in User Schema to generate an hashed password with crypto;
+* Install Morgan package and call it inside `app.js`;
+* Create an error handler to create more readable errors for database;
+* Create the New User controller inside userController;

@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 
 // Import Different Routes
 const userRoutes = require('./routes/user');
@@ -25,6 +27,11 @@ const connectDB = (async () => {
     process.exit(1);
   }
 })();
+
+// Init Middlewares
+app.use(morgan('dev'));
+app.use(express.json({ extended: false }));
+app.use(cookieParser());
 
 // Use Routes
 app.use('/api', userRoutes);
