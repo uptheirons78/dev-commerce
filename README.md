@@ -9,3 +9,5 @@ A Full Stack Ecommerce project built with MERN: MongoDB, Express, React and Node
 * Install Mongoose and connect with your DB;
 * Create `routes` directory and manage routes;
 * Create `controllers` directory and manage different controllers;
+* Create `models` directory and Mongoose Schemas. Install uuid package;
+* Create Virtuals in User Schema to generate an hashed password with crypto;
