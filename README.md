@@ -25,3 +25,10 @@ A Full Stack Ecommerce project built with MERN: MongoDB, Express, React and Node
 * Rename 'user.js' in routes folder to 'auth.js';
 * Create 'userById' route and its controller;
 * Create 2 methods in authController: isAuth and isAdmin;
+
+#### Categories routes and schemas [step-08]
+
+* Create Category Schema with Mongoose;
+* Create Category Route;
+* Create Category Controller and update app.js to use category route;
+* Inside Category Route check if user is signedin, authenticated and also admin;

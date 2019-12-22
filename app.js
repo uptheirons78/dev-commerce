@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 // Import Different Routes
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const categoryRoutes = require('./routes/category');
 
 // Application
 const app = express();
@@ -37,5 +38,6 @@ app.use(cookieParser());
 // Use Routes
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
+app.use('/api', categoryRoutes);
 
 app.listen(PORT, () => console.log(`Server is correctly running on PORT:${PORT}`));
