@@ -18,3 +18,10 @@ A Full Stack Ecommerce project built with MERN: MongoDB, Express, React and Node
 * Create signin route, its controller and authentication method inside User Model; [step-06]
 * Create signiout route and its controller with express-jwt; [step-06]
 * Create a middleware for protected routes: requireSignin; [step-06]
+
+#### Refactoring Application Structure [step-07]
+
+* Rename 'userControlle.js' to 'authController.js';
+* Rename 'user.js' in routes folder to 'auth.js';
+* Create 'userById' route and its controller;
+* Create 2 methods in authController: isAuth and isAdmin;

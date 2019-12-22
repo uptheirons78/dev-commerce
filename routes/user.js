@@ -2,15 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 // Import Controllers
-// requireSignin: is a method for protected routes
-const { signup, signin, signout, requireSignin } = require('../controllers/userController');
+const { requireSignin, isAuth, isAdmin } = require('../controllers/authController');
+const { userById } = require('../controllers/userController');
 
-// Import userSignupValidator
-const { userSignupValidator } = require('../validator/index');
+router.get('/secret/:userId', requireSignin, isAuth, isAdmin, (req, res) => {
+  res.json({
+    user: req.profile
+  });
+});
 
 // Routes Definitions
-router.post('/signup', userSignupValidator, signup);
-router.post('/signin', signin);
-router.get('/signout', signout);
+router.param('userId', userById);
 
 module.exports = router;

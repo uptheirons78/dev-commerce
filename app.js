@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 
 // Import Different Routes
+const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 
 // Application
@@ -34,6 +35,7 @@ app.use(express.json({ extended: false }));
 app.use(cookieParser());
 
 // Use Routes
+app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 
 app.listen(PORT, () => console.log(`Server is correctly running on PORT:${PORT}`));
