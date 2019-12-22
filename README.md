@@ -14,3 +14,7 @@ A Full Stack Ecommerce project built with MERN: MongoDB, Express, React and Node
 * Install Morgan package and call it inside `app.js`;
 * Create an error handler to create more readable errors for database;
 * Create the New User controller inside userController;
+* Install express-validator, create a validators folder with all methods to use, import it inside user route and check for errors;
+* Create signin route, its controller and authentication method inside User Model; [step-06]
+* Create signiout route and its controller with express-jwt; [step-06]
+* Create a middleware for protected routes: requireSignin; [step-06]
