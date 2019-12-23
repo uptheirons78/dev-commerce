@@ -56,3 +56,9 @@ A Full Stack Ecommerce project built with MERN: MongoDB, Express, React and Node
 * Create Product Routes and Controllers;
 * Install Formidable and Lodash to load files like images;
 * Apply some validation inside Controller (fields and file size check);
+
+#### Products Read, Update and Delete Routes [step-10]
+
+* Create a middleware to find product by its ID;
+* Create READ route with its controller;
+* Create DELETE and UPDATE route with their controller;
