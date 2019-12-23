@@ -22,7 +22,7 @@ exports.productById = async (req, res, next, id) => {
     req.product = product;
     next();
   } catch (error) {
-    console.error(e.message);
+    console.error(error.message);
     res.status(500).send('Server Error');
   }
 };

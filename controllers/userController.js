@@ -1,20 +1,8 @@
 const User = require('../models/User');
 
-// exports.userById = (req, res, next, id) => {
-//   User.findById(id).exec((err, user) => {
-//     // If there is an error or not a user
-//     if (err || !user) {
-//       return res.status(400).json({
-//         error: 'User Not Found'
-//       });
-//     }
-//     // User Found
-//     req.profile = user;
-//     next();
-//   });
-// };
-
-// Async Await Version
+/**
+ * User By ID [with Async Await]
+ */
 exports.userById = async (req, res, next, id) => {
   try {
     // Search for user with its ID
@@ -27,7 +15,7 @@ exports.userById = async (req, res, next, id) => {
     req.profile = user;
     next();
   } catch (error) {
-    console.error(e.message);
+    console.error(error.message);
     res.status(500).send('Server Error');
   }
 };

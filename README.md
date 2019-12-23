@@ -62,3 +62,10 @@ A Full Stack Ecommerce project built with MERN: MongoDB, Express, React and Node
 * Create a middleware to find product by its ID;
 * Create READ route with its controller;
 * Create DELETE and UPDATE route with their controller;
+
+#### Categories Read, Update and Delete Routes [step-11]
+
+* Create a middleware to find category by its ID;
+* Create READ route with its controller;
+* Create DELETE and UPDATE routes with their controller;
+* Create LIST route with its own controller;
