@@ -77,3 +77,11 @@ A Full Stack Ecommerce project built with MERN: MongoDB, Express, React and Node
 * Create 'list' method inside product controller to display all products by params;
 * Create a proper route to display 'related' products;
 * Create 'listRelated' method inside product controller to display all related products;
+
+#### List Products Categories, Products By Search and Send Products Photo. Read and Update User Profile. [step-13]
+
+* Add route for all products categories with its controller;
+* Add route for 'products by search' with its controller;
+* Create a specific route to send back product photo with a middleware in controller;
+* Create READ and UPDATE User routes with controllers;
+* Install CORS with `npm i cors` and use it as middleware inside 'app.js' file;

@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 // Import Different Routes
 const authRoutes = require('./routes/auth');
@@ -35,6 +36,7 @@ const connectDB = (async () => {
 app.use(morgan('dev'));
 app.use(express.json({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 
 // Use Routes
 app.use('/api', authRoutes);

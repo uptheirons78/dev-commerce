@@ -201,3 +201,73 @@ exports.listRelated = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+/**
+ * Display list of Categories related to products
+ */
+exports.listCategories = async (req, res) => {
+  try {
+    const categories = await Product.distinct('category');
+
+    if (!categories) {
+      return res.status(400).json({ error: 'No Category Found' });
+    }
+    res.json(categories);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+};
+
+/**
+ * List By Search
+ */
+exports.listBySearch = async (req, res) => {
+  try {
+    let order = req.query.order ? req.query.order : 'desc';
+    let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+    let limit = req.query.limit ? parseInt(req.query.limit) : 100;
+    let skip = parseInt(req.body.skip); // for LOAD MORE button
+    let findArgs = {};
+
+    for (let key in req.body.filters) {
+      if (req.body.filters[key] > 0) {
+        if (key === 'price') {
+          findArgs[key] = {
+            $gte: req.body.filters[key][0], //greater than
+            $lte: req.body.filters[key][1] // less than
+          };
+        }
+      } else {
+        findArgs[key] = req.body.filters[key];
+      }
+    }
+
+    const products = await Product.find(findArgs)
+      .select('-photo')
+      .populate('category')
+      .sort([[sortBy, order]])
+      .skip(skip)
+      .limit(limit);
+
+    if (!products) {
+      return res.status(400).json({ error: 'No Products Found' });
+    }
+    res.json({ size: products.length, products });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+};
+
+/**
+ * Products Photo: middleware to get product specific photo
+ * any time this route is called: '/product/photo/:productId'
+ */
+exports.photo = (req, res, next) => {
+  if (req.product.photo.data) {
+    res.set('Content-Type', req.product.photo.contentType);
+    return res.send(req.product.photo.data);
+  }
+  next();
+};
