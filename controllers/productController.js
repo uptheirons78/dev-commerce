@@ -145,3 +145,59 @@ exports.update = (req, res) => {
     });
   });
 };
+
+/**
+ * Display products based on sell and arrival with query parameters:
+ * Examples:
+ * by sell = /products?sortBy=sold&order=desc&limit=4
+ * by arrival = /products?sortBy=createdAt&order=desc&limit=4
+ *
+ * If no parameter is set, return all products.
+ */
+exports.list = async (req, res) => {
+  try {
+    let order = req.query.order ? req.query.order : 'asc';
+    let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+    let limit = req.query.limit ? parseInt(req.query.limit) : 6;
+
+    const products = await Product.find()
+      .select('-photo')
+      .populate('category')
+      .sort([[sortBy, order]])
+      .limit(limit);
+
+    if (!products) {
+      return res.status(400).json({ error: 'Products Not Found' });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+};
+
+/**
+ * Display related products
+ */
+exports.listRelated = async (req, res) => {
+  try {
+    // Limit query: default 6
+    let limit = req.query.limit ? parseInt(req.query.limit) : 6;
+
+    // Find all products of same category excluding the one in the req
+    // Populate Category only with name and _id
+    const products = await Product.find({ _id: { $ne: req.product }, category: req.product.category })
+      .limit(limit)
+      .populate('category', '_id name');
+
+    if (!products) {
+      return res.status(400).json({ error: 'Products Not Found' });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+};

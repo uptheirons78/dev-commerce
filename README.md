@@ -69,3 +69,11 @@ A Full Stack Ecommerce project built with MERN: MongoDB, Express, React and Node
 * Create READ route with its controller;
 * Create DELETE and UPDATE routes with their controller;
 * Create LIST route with its own controller;
+
+#### Products by sells and arrival. Related products [step-12]
+
+* Add a proper route with a 'list' method inside product routes file;
+* Add 'sold' field inside Product model;
+* Create 'list' method inside product controller to display all products by params;
+* Create a proper route to display 'related' products;
+* Create 'listRelated' method inside product controller to display all related products;
